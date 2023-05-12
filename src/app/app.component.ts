@@ -31,6 +31,7 @@ export class AppComponent {
   selectedProducts: Product[];
 
   submitted: boolean;
+  person: Person;
 
   constructor(
     private productService: ProductService,
@@ -45,7 +46,7 @@ export class AppComponent {
   }
 
   openNew() {
-    this.product = {};
+    this.person = {};
     this.submitted = false;
     this.productDialog = true;
   }
@@ -70,8 +71,10 @@ export class AppComponent {
     });
   }
 
-  editProduct(product: Product) {
-    this.product = { ...product };
+  editProduct(person: Person) {
+    console.log(person)
+    this.person = { ...person };
+    this.person.born = new Date(this.person.born);
     this.productDialog = true;
   }
 

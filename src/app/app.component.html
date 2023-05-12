@@ -122,14 +122,14 @@
             pRipple
             icon="pi pi-pencil"
             class="p-button-rounded p-button-success p-mr-2"
-            (click)="editProduct(product)"
+            (click)="editProduct(person)"
           ></button>
           <button
             pButton
             pRipple
             icon="pi pi-trash"
             class="p-button-rounded p-button-warning"
-            (click)="deleteProduct(product)"
+            (click)="deleteProduct(person)"
           ></button>
         </td>
       </tr>
@@ -146,7 +146,7 @@
 <p-dialog
   [(visible)]="productDialog"
   [style]="{ width: '450px' }"
-  header="Product Details"
+  header="Cadastro"
   [modal]="true"
   styleClass="p-fluid"
 >
@@ -157,86 +157,34 @@
         type="text"
         pInputText
         id="name"
-        [(ngModel)]="product.name"
+        [(ngModel)]="person.name"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !product.name"
+      <small class="p-invalid" *ngIf="submitted && !person.name"
         >Nome é necessário.</small
       >
     </div>
+
+    <div class="p-formgrid p-grid">
+      <label for="born">Data de Nascimento</label>
+      <p-calendar [(ngModel)]="person.born"></p-calendar>
+      <div class="p-field p-col">
+        <label for="gender">Sexo</label>
+        <p-inputNumber id="gender" [(ngModel)]="person.gender"></p-inputNumber>
+      </div>
+    </div>
+
     <div class="p-field">
       <label for="description">Descrição</label>
       <textarea
         id="description"
         pInputTextarea
-        [(ngModel)]="product.description"
+        [(ngModel)]="person.note"
         required
         rows="3"
         cols="20"
       ></textarea>
-    </div>
-
-    <div class="p-field">
-      <label class="p-mb-3">Categoria</label>
-      <div class="p-formgrid p-grid">
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton
-            id="category1"
-            name="category"
-            value="Accessories"
-            [(ngModel)]="product.category"
-          ></p-radioButton>
-          <label for="category1">Acessórios</label>
-        </div>
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton
-            id="category2"
-            name="category"
-            value="Clothing"
-            [(ngModel)]="product.category"
-          ></p-radioButton>
-          <label for="category2">Roupas</label>
-        </div>
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton
-            id="category3"
-            name="category"
-            value="Electronics"
-            [(ngModel)]="product.category"
-          ></p-radioButton>
-          <label for="category3">Eletrônicos</label>
-        </div>
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton
-            id="category4"
-            name="category"
-            value="Fitness"
-            [(ngModel)]="product.category"
-          ></p-radioButton>
-          <label for="category4">Fitness</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-formgrid p-grid">
-      <div class="p-field p-col">
-        <label for="price">Preço</label>
-        <p-inputNumber
-          id="price"
-          [(ngModel)]="product.price"
-          mode="currency"
-          currency="USD"
-          locale="en-US"
-        ></p-inputNumber>
-      </div>
-      <div class="p-field p-col">
-        <label for="quantity">Quantidade</label>
-        <p-inputNumber
-          id="quantity"
-          [(ngModel)]="product.quantity"
-        ></p-inputNumber>
-      </div>
     </div>
   </ng-template>
 
